@@ -2,12 +2,11 @@ const { ObjectId } = require("mongodb");
 const { getDb } = require("../db/index.js");
 
 exports.addProduct = async (req, res, next) => {
-  const { product } = req.body;
   try {
     const db = getDb();
     console.log("Db", db);
-    const result = await db.collection("products").insertOne(product);
-    res.status(201).json(result.ops[0]); // 201 Created
+    const result = await db.collection("products").insertOne(req.body);
+    res.status(201).json({ id: result.insertedId }); // 201 Created
     // res.json(result);
   } catch (err) {
     console.log(err);
@@ -27,11 +26,10 @@ exports.getProducts = async (req, res, next) => {
 
 exports.getProductById = async (req, res, next) => {
   const { id } = req.params;
+  const productID = new ObjectId(id);
   try {
     const db = getDb();
-    const result = await db
-      .collection("products")
-      .findOne({ _id: ObjectId(id) });
+    const result = await db.collection("products").findOne({ _id: productID });
     if (result) {
       res.status(200).json(result); // 200 OK
     } else {
@@ -44,12 +42,12 @@ exports.getProductById = async (req, res, next) => {
 
 exports.updateProduct = async (req, res, next) => {
   const { id } = req.params;
-  const { product } = req.body;
+  const productID = new ObjectId(id);
   try {
     const db = getDb();
     const result = await db
       .collection("products")
-      .updateOne({ _id: ObjectId(id) }, { $set: product });
+      .updateOne({ _id: productID }, { $set: req.body });
     if (result.modifiedCount > 0) {
       res.status(200).json({ message: "Product updated successfully" }); // 200 OK
     } else {
@@ -62,11 +60,13 @@ exports.updateProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
   const { id } = req.params;
+  const productID = new ObjectId(id);
+
   try {
     const db = getDb();
     const result = await db
       .collection("products")
-      .deleteOne({ _id: ObjectId(id) });
+      .deleteOne({ _id: productID });
     if (result.deletedCount > 0) {
       res.status(204).end(); // 204 No Content
     } else {

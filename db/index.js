@@ -10,10 +10,10 @@ exports.initDb = (callback) => {
   }
   MongoClient.connect(mongo.uri)
     .then((client) => {
-      console.log(
-        "Db initialized successfully",
-        client.db().collection("products")
-      );
+      // console.log(
+      //   "Db initialized successfully",
+      //   client.db().collection("products")
+      // );
       _db = client.db("sales-inventory");
       // _db = client;
       callback(null, _db);
