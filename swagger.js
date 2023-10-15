@@ -5,8 +5,8 @@ const doc = {
     title: "Sales Inventory API",
     description: "Description",
   },
-  host: `localhost:3000`,
-  // host: 'cse-341-web-services-d47l.onrender.com',
+  // host: `localhost:3000`,
+  host: "https://sales-inventory.onrender.com",
   schemes: ["https"],
 };
 
