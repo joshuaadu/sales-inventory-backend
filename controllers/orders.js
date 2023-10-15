@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "../db/index.js";
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/index.js");
 
-export const addOrder = async (req, res, next) => {
+exports.addOrder = async (req, res, next) => {
   const { order } = req.body;
   try {
     const db = getDb();
@@ -12,7 +12,7 @@ export const addOrder = async (req, res, next) => {
   }
 };
 
-export const getOrders = async (req, res, next) => {
+exports.getOrders = async (req, res, next) => {
   try {
     const db = getDb();
     const result = await db.collection("orders").find({}).toArray();
@@ -22,7 +22,7 @@ export const getOrders = async (req, res, next) => {
   }
 };
 
-export const getOrderById = async (req, res, next) => {
+exports.getOrderById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const db = getDb();
@@ -33,7 +33,7 @@ export const getOrderById = async (req, res, next) => {
   }
 };
 
-export const updateOrder = async (req, res, next) => {
+exports.updateOrder = async (req, res, next) => {
   const { id } = req.params;
   const { order } = req.body;
   try {
@@ -47,7 +47,7 @@ export const updateOrder = async (req, res, next) => {
   }
 };
 
-export const deleteOrder = async (req, res, next) => {
+exports.deleteOrder = async (req, res, next) => {
   const { id } = req.params;
   try {
     const db = getDb();
@@ -60,7 +60,7 @@ export const deleteOrder = async (req, res, next) => {
   }
 };
 
-export const getOrdersByUser = async (req, res, next) => {
+exports.getOrdersByUser = async (req, res, next) => {
   const { user } = req.params;
   try {
     const db = getDb();
@@ -71,7 +71,7 @@ export const getOrdersByUser = async (req, res, next) => {
   }
 };
 
-export const getOrdersByStatus = async (req, res, next) => {
+exports.getOrdersByStatus = async (req, res, next) => {
   const { status } = req.params;
   try {
     const db = getDb();
@@ -85,7 +85,7 @@ export const getOrdersByStatus = async (req, res, next) => {
   }
 };
 
-export const getOrdersByDate = async (req, res, next) => {
+exports.getOrdersByDate = async (req, res, next) => {
   const { date } = req.params;
   try {
     const db = getDb();
@@ -96,7 +96,7 @@ export const getOrdersByDate = async (req, res, next) => {
   }
 };
 
-export const getOrdersByProduct = async (req, res, next) => {
+exports.getOrdersByProduct = async (req, res, next) => {
   const { product } = req.params;
   try {
     const db = getDb();
@@ -110,7 +110,7 @@ export const getOrdersByProduct = async (req, res, next) => {
   }
 };
 
-export const getOrdersByCategory = async (req, res, next) => {
+exports.getOrdersByCategory = async (req, res, next) => {
   const { category } = req.params;
   try {
     const db = getDb();
@@ -124,7 +124,7 @@ export const getOrdersByCategory = async (req, res, next) => {
   }
 };
 
-export const getOrdersByPrice = async (req, res, next) => {
+exports.getOrdersByPrice = async (req, res, next) => {
   const { price } = req.params;
   try {
     const db = getDb();
@@ -138,7 +138,7 @@ export const getOrdersByPrice = async (req, res, next) => {
   }
 };
 
-export const getOrdersByQuantity = async (req, res, next) => {
+exports.getOrdersByQuantity = async (req, res, next) => {
   const { quantity } = req.params;
   try {
     const db = getDb();
@@ -152,7 +152,7 @@ export const getOrdersByQuantity = async (req, res, next) => {
   }
 };
 
-export const getOrdersByTotal = async (req, res, next) => {
+exports.getOrdersByTotal = async (req, res, next) => {
   const { total } = req.params;
   try {
     const db = getDb();

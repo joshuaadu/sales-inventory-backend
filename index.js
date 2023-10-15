@@ -1,7 +1,7 @@
-import http from "http";
-import app from "./app.js";
-import { express } from "./config/index.js";
-import { initDb } from "./db/index.js";
+const http = require("http");
+const app = require("./app.js");
+const { express } = require("./config/index.js");
+const { initDb } = require("./db/index.js");
 
 const server = http.createServer(app);
 

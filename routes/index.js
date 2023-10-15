@@ -1,9 +1,9 @@
-import { Router } from "express";
-import productsRouter from "./products.js";
-import ordersRouter from "./orders.js";
-import usersRouter from "./users.js";
-import cartRouter from "./cart.js";
-import swaggerRouter from "./swagger.js";
+const { Router } = require("express");
+const productsRouter = require("./products.js");
+const ordersRouter = require("./orders.js");
+const usersRouter = require("./users.js");
+const cartRouter = require("./cart.js");
+const swaggerRouter = require("./swagger.js");
 
 const router = Router();
 
@@ -14,4 +14,4 @@ router.use(productsRouter);
 // router.use(usersRouter);
 // router.use(cartRouter);
 
-export default router;
+module.exports = router;

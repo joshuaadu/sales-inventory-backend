@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "../db/index.js";
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../db/index.js");
 
-export const addUser = async (req, res, next) => {
+exports.addUser = async (req, res, next) => {
   const { user } = req.body;
   try {
     const db = getDb();
@@ -12,7 +12,7 @@ export const addUser = async (req, res, next) => {
   }
 };
 
-export const getUsers = async (req, res, next) => {
+exports.getUsers = async (req, res, next) => {
   try {
     const db = getDb();
     const result = await db.collection("users").find({}).toArray();
@@ -22,7 +22,7 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
-export const getUserById = async (req, res, next) => {
+exports.getUserById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const db = getDb();
@@ -33,7 +33,7 @@ export const getUserById = async (req, res, next) => {
   }
 };
 
-export const updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   const { id } = req.params;
   const { user } = req.body;
   try {
@@ -47,7 +47,7 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-export const deleteUser = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   const { id } = req.params;
   try {
     const db = getDb();

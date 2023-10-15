@@ -1,9 +1,9 @@
-import { MongoClient } from "mongodb";
-import { mongo } from "../config/index.js";
+const { MongoClient } = require("mongodb");
+const { mongo } = require("../config/index.js");
 
 let _db;
 
-export const initDb = (callback) => {
+exports.initDb = (callback) => {
   if (_db) {
     console.log("Db is already initialized!");
     return callback(null, _db);
@@ -15,6 +15,7 @@ export const initDb = (callback) => {
         client.db().collection("products")
       );
       _db = client.db("sales-inventory");
+      // _db = client;
       callback(null, _db);
     })
     .catch((err) => {
@@ -22,7 +23,7 @@ export const initDb = (callback) => {
     });
 };
 
-export const getDb = () => {
+exports.getDb = () => {
   if (!_db) {
     throw Error("Db not initialized");
   }

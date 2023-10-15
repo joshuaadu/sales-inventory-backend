@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "../db/index.js";
+const ObjectId = require("mongodb").ObjectId;
+const { getDb } = require("../db/index.js");
 
-export const addToCart = async (req, res, next) => {
+exports.addToCart = async (req, res, next) => {
   const { id } = req.body;
   try {
     const db = getDb();
@@ -12,7 +12,7 @@ export const addToCart = async (req, res, next) => {
   }
 };
 
-export const getCart = async (req, res, next) => {
+exports.getCart = async (req, res, next) => {
   try {
     const db = getDb();
     const result = await db.collection("cart").find({}).toArray();
@@ -22,7 +22,7 @@ export const getCart = async (req, res, next) => {
   }
 };
 
-export const deleteFromCart = async (req, res, next) => {
+exports.deleteFromCart = async (req, res, next) => {
   const { id } = req.params;
   try {
     const db = getDb();
