@@ -6,7 +6,7 @@ const doc = {
     description: "Description",
   },
   // host: `localhost:3000`,
-  host: "https://sales-inventory.onrender.com",
+  host: "sales-inventory.onrender.com",
   schemes: ["https"],
 };
 
