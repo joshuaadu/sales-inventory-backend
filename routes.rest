@@ -33,38 +33,35 @@ content-type: application/json
 ### DELETE contact
 DELETE http://localhost:3000/products/652b9e051aa9da6dae725fc3 HTTP/1.1
 
+
+
+
 // PRODUCTION Deploy
-###
-GET https://cse-341-web-services-d47l.onrender.com/contacts
-###
-GET https://cse-341-web-services-d47l.onrender.com/contacts/650f9efbd773056d85b2a3f1
-###
-GET https://cse-341-web-services-d47l.onrender.com/contacts/650f9edbd773056d85b2a3f0
-###
-GET https://cse-341-web-services-d47l.onrender.com/contacts/650f9efbd773056d85b2a3f1
-###
-POST https://cse-341-web-services-d47l.onrender.com/contacts HTTP/1.1
+### Get all contacts
+GET https://sales-inventory.onrender.com/products
+
+
+
+
+### Create product
+POST https://sales-inventory.onrender.com/products HTTP/1.1
 content-type: application/json
 
 {
-    "firstName":"Chris",
-    "lastName":"Chat",
-    "email":"chrischat@test.com",
-    "favoriteColor":"Blue",
-    "birthday":"06/19/201"
+  "name": "New Product 10",
+  "description": "A description for the new product",
+  "price": 19.99
 }
 
 
 ### PUT contact
-PUT https://cse-341-web-services-d47l.onrender.com/contacts/6518f42d473ae4db75612f5b HTTP/1.1
+PUT https://sales-inventory.onrender.com/products/652b9f0de1e784527a52eb87 HTTP/1.1
 content-type: application/json
 
 {
-   "firstName":"Charles",
-    "lastName":"Chat",
-    "email":"chrischat@test.com",
-    "favoriteColor":"Blue",
-    "birthday":"06/19/201"
+  "name": "Update Product 2",
+  "description": "A description for the new product",
+  "price": 19.99
 }
 ### DELETE contact
-DELETE https://cse-341-web-services-d47l.onrender.com/contacts/6518f42d473ae4db75612f5b HTTP/1.1
+DELETE https://sales-inventory.onrender.com/products/652b9f0de1e784527a52eb87 HTTP/1.1
