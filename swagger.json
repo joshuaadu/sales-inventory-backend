@@ -26,7 +26,35 @@
         "description": "",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Product name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Add new product"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 0
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "price"
+                ]
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
@@ -34,15 +62,30 @@
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Adding new user.",
             "schema": {
               "type": "object",
               "properties": {
-                "product": {
-                  "example": "any"
+                "name": {
+                  "type": "string",
+                  "example": "Product name"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Add new product"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 0
                 }
-              }
+              },
+              "required": [
+                "name",
+                "description",
+                "price"
+              ]
             }
           }
         ],
@@ -66,10 +109,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Product name"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Add new product"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 0
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "price"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Product not found"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
@@ -81,26 +161,38 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "product": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Product updated successfully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Product not found"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
@@ -119,7 +211,19 @@
             "description": "No Content"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Product not found"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

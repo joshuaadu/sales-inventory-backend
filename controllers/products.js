@@ -2,6 +2,15 @@ const { ObjectId } = require("mongodb");
 const { getDb } = require("../db/index.js");
 
 exports.addProduct = async (req, res, next) => {
+  /*    #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Adding new user.',
+                schema: {
+                    $name: 'Product name',
+                    $description: "Add new product",
+                    $price: 0.00
+                }
+        } */
   try {
     const db = getDb();
     console.log("Db", db);
@@ -14,6 +23,15 @@ exports.addProduct = async (req, res, next) => {
 };
 
 exports.getProducts = async (req, res, next) => {
+  /* #swagger.responses[200] = {
+                schema: [
+                  {
+                    $name: 'Product name',
+                    $description: "Add new product",
+                    $price: 0.00
+                }
+              ]
+        } */
   try {
     const db = getDb();
     console.log("Db", db.collection);
@@ -25,6 +43,19 @@ exports.getProducts = async (req, res, next) => {
 };
 
 exports.getProductById = async (req, res, next) => {
+  /* #swagger.responses[200] = {
+                schema: {
+                    $name: 'Product name',
+                    $description: "Add new product",
+                    $price: 0.00
+                }
+        } */
+  /*
+      #swagger.responses[404] = {
+                schema: {
+                    message: 'Product not found',
+                }
+        } */
   const { id } = req.params;
   const productID = new ObjectId(id);
   try {
@@ -41,6 +72,17 @@ exports.getProductById = async (req, res, next) => {
 };
 
 exports.updateProduct = async (req, res, next) => {
+  /* #swagger.responses[200] = {
+                schema: {
+                    message: 'Product updated successfully',
+                }
+     
+        } */
+  /*  #swagger.responses[404] = {
+                schema: {
+                    message: 'Product not found',
+                }
+        } */
   const { id } = req.params;
   const productID = new ObjectId(id);
   try {
@@ -59,6 +101,12 @@ exports.updateProduct = async (req, res, next) => {
 };
 
 exports.deleteProduct = async (req, res, next) => {
+  /* 
+      #swagger.responses[404] = {
+                schema: {
+                    message: 'Product not found',
+                }
+        } */
   const { id } = req.params;
   const productID = new ObjectId(id);
 
