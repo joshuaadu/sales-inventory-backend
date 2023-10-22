@@ -13,7 +13,12 @@ const router = express.Router();
 
 // Products
 router.get("/products", getProducts);
-router.get("/products/:id", getProductById);
+router.get(
+  "/products/:id",
+  param("id", "Product id is required!").trim().notEmpty().isString(),
+  validate,
+  getProductById
+);
 router.post("/products", productValidationRules(), validate, addProduct);
 router.put(
   "/products/:id",
