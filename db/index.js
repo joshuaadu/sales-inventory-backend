@@ -1,5 +1,12 @@
 const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 const { mongo } = require("../config/index.js");
+
+// mongoose.connect(mongo.uri);
+
+// mongoose.connection.on("connected", () => {
+//   console.log("Mongoose is connected");
+// });
 
 let _db;
 

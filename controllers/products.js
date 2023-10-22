@@ -19,6 +19,7 @@ exports.addProduct = async (req, res, next) => {
     // res.json(result);
   } catch (err) {
     console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
@@ -38,7 +39,9 @@ exports.getProducts = async (req, res, next) => {
     const result = await db.collection("products").find({}).toArray();
     res.status(200).json(result); // 200 OK
   } catch (err) {
-    next(err);
+    // next(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
@@ -67,14 +70,21 @@ exports.getProductById = async (req, res, next) => {
       res.status(404).json({ message: "Product not found" }); // 404 Not Found
     }
   } catch (err) {
-    next(err);
+    // next(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
 exports.updateProduct = async (req, res, next) => {
-  /* #swagger.responses[200] = {
+  /* #swagger.responses[204] = {
                 schema: {
                     message: 'Product updated successfully',
+                }
+        } */
+  /*  #swagger.responses[400] = {
+                schema: {
+                    message: 'Product id is required',
                 }
      
         } */
@@ -83,20 +93,33 @@ exports.updateProduct = async (req, res, next) => {
                     message: 'Product not found',
                 }
         } */
+  /*    #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Adding new user.',
+                schema: {
+                    $name: 'Product name',
+                    $description: "Add new product",
+                    $price: 0.00
+                }
+        } */
   const { id } = req.params;
   const productID = new ObjectId(id);
+  console.log("productID", productID);
+  console.log("req.body", req.body);
   try {
     const db = getDb();
     const result = await db
       .collection("products")
       .updateOne({ _id: productID }, { $set: req.body });
     if (result.modifiedCount > 0) {
-      res.status(200).json({ message: "Product updated successfully" }); // 200 OK
+      res.status(204); // 204 No Content
     } else {
       res.status(404).json({ message: "Product not found" }); // 404 Not Found
     }
   } catch (err) {
-    next(err);
+    // next(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
@@ -106,6 +129,20 @@ exports.deleteProduct = async (req, res, next) => {
                 schema: {
                     message: 'Product not found',
                 }
+        } */
+  /*
+      #swagger.responses[204] = {
+                schema: {
+                    message: 'Product deleted successfully',
+                }
+        } 
+        */
+  /*
+        #swagger.responses[400] = {
+                schema: {
+                    message: 'Product id is required',
+                }
+        } 
         } */
   const { id } = req.params;
   const productID = new ObjectId(id);
@@ -121,6 +158,7 @@ exports.deleteProduct = async (req, res, next) => {
       res.status(404).json({ message: "Product not found" }); // 404 Not Found
     }
   } catch (err) {
-    next(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
