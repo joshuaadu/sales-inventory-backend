@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const { mongo } = require("../config/index.js");
 
 // mongoose.connect(mongo.uri);
