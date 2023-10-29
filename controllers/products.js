@@ -13,7 +13,7 @@ exports.addProduct = async (req, res, next) => {
         } */
   try {
     const db = getDb();
-    console.log("Db", db);
+    // console.log("Db", db);
     const result = await db.collection("products").insertOne(req.body);
     res.status(201).json({ id: result.insertedId }); // 201 Created
     // res.json(result);
