@@ -111,8 +111,10 @@ exports.updateProduct = async (req, res, next) => {
     const result = await db
       .collection("products")
       .updateOne({ _id: productID }, { $set: req.body });
-    if (result.modifiedCount > 0) {
-      res.status(204); // 204 No Content
+    console.log("result", result);
+    if (result.matchedCount > 0) {
+      // res.status(202).json({ message: "Updated" }); // 204 No Content
+      res.status(204).end(); // 204 No Content
     } else {
       res.status(404).json({ message: "Product not found" }); // 404 Not Found
     }
