@@ -1,14 +1,13 @@
-const express = require("express");
-const { param } = require("express-validator");
-const {
+import express from "express";
+import { param } from "express-validator";
+import { productValidationRules, validate } from "../lib/validator";
+import {
   getProducts,
   getProductById,
   addProduct,
   updateProduct,
   deleteProduct,
-} = require("../controllers/products.js");
-const { productValidationRules, validate } = require("../lib/validator.js");
-
+} from "../controllers/products";
 const router = express.Router();
 
 // Products
@@ -33,5 +32,4 @@ router.delete(
   validate,
   deleteProduct
 );
-
-module.exports = router;
+export default router;

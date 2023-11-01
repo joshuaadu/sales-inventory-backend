@@ -1,7 +1,8 @@
-const { ObjectId } = require("mongodb");
-const { getDb } = require("../db/index.js");
+import { ObjectId } from "mongodb";
+import { getDb } from "../model";
+import { NextFunction, Request, Response } from "express";
 
-exports.addProduct = async (req, res, next) => {
+export const addProduct = async (req: Request, res: Response) => {
   /*    #swagger.parameters['obj'] = {
                 in: 'body',
                 description: 'Adding new user.',
@@ -23,7 +24,7 @@ exports.addProduct = async (req, res, next) => {
   }
 };
 
-exports.getProducts = async (req, res, next) => {
+export const getProducts = async (req: Request, res: Response) => {
   /* #swagger.responses[200] = {
                 schema: [
                   {
@@ -45,7 +46,7 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
-exports.getProductById = async (req, res, next) => {
+export const getProductById = async (req: Request, res: Response) => {
   /* #swagger.responses[200] = {
                 schema: {
                     $name: 'Product name',
@@ -76,7 +77,7 @@ exports.getProductById = async (req, res, next) => {
   }
 };
 
-exports.updateProduct = async (req, res, next) => {
+export const updateProduct = async (req: Request, res: Response) => {
   /* #swagger.responses[204] = {
                 schema: {
                     message: 'Product updated successfully',
@@ -125,7 +126,7 @@ exports.updateProduct = async (req, res, next) => {
   }
 };
 
-exports.deleteProduct = async (req, res, next) => {
+export const deleteProduct = async (req: Request, res: Response) => {
   /* 
       #swagger.responses[404] = {
                 schema: {

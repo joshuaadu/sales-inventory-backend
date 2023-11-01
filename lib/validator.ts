@@ -1,6 +1,7 @@
-const { body, validationResult, check } = require("express-validator");
+import { body, validationResult, check } from "express-validator";
+import { Request, Response, NextFunction } from "express";
 
-const productValidationRules = () => {
+export const productValidationRules = () => {
   return [
     body("name", "Product name required!").isString(),
     body("description", "Product description required!").isString(),
@@ -8,7 +9,7 @@ const productValidationRules = () => {
   ];
 };
 
-const validate = (req, res, next) => {
+export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     return next();
@@ -18,9 +19,4 @@ const validate = (req, res, next) => {
   return res.status(400).json({
     errors: errors.array(),
   });
-};
-
-module.exports = {
-  productValidationRules,
-  validate,
 };

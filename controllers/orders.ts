@@ -1,7 +1,12 @@
-const { ObjectId } = require("mongodb");
-const { getDb } = require("../db/index.js");
+import { ObjectId } from "mongodb";
+import { getDb } from "../model";
+import { NextFunction, Request, Response } from "express";
 
-exports.addOrder = async (req, res, next) => {
+export const addOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { order } = req.body;
   try {
     const db = getDb();
@@ -12,7 +17,11 @@ exports.addOrder = async (req, res, next) => {
   }
 };
 
-exports.getOrders = async (req, res, next) => {
+export const getOrders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const db = getDb();
     const result = await db.collection("orders").find({}).toArray();
@@ -22,45 +31,63 @@ exports.getOrders = async (req, res, next) => {
   }
 };
 
-exports.getOrderById = async (req, res, next) => {
+export const getOrderById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   try {
     const db = getDb();
-    const result = await db.collection("orders").findOne({ _id: ObjectId(id) });
+    const result = await db
+      .collection("orders")
+      .findOne({ _id: new ObjectId(id) });
     res.json(result);
   } catch (err) {
     next(err);
   }
 };
 
-exports.updateOrder = async (req, res, next) => {
+export const updateOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   const { order } = req.body;
   try {
     const db = getDb();
     const result = await db
       .collection("orders")
-      .updateOne({ _id: ObjectId(id) }, { $set: order });
+      .updateOne({ _id: new ObjectId(id) }, { $set: order });
     res.json(result);
   } catch (err) {
     next(err);
   }
 };
 
-exports.deleteOrder = async (req, res, next) => {
+export const deleteOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   try {
     const db = getDb();
     const result = await db
       .collection("orders")
-      .deleteOne({ _id: ObjectId(id) });
+      .deleteOne({ _id: new ObjectId(id) });
     res.json(result);
   } catch (err) {
     next(err);
   }
 };
 
-exports.getOrdersByUser = async (req, res, next) => {
+export const getOrdersByUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { user } = req.params;
   try {
     const db = getDb();
@@ -71,7 +98,11 @@ exports.getOrdersByUser = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByStatus = async (req, res, next) => {
+export const getOrdersByStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { status } = req.params;
   try {
     const db = getDb();
@@ -85,7 +116,11 @@ exports.getOrdersByStatus = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByDate = async (req, res, next) => {
+export const getOrdersByDate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { date } = req.params;
   try {
     const db = getDb();
@@ -96,7 +131,11 @@ exports.getOrdersByDate = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByProduct = async (req, res, next) => {
+export const getOrdersByProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { product } = req.params;
   try {
     const db = getDb();
@@ -110,7 +149,11 @@ exports.getOrdersByProduct = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByCategory = async (req, res, next) => {
+export const getOrdersByCategory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { category } = req.params;
   try {
     const db = getDb();
@@ -124,7 +167,11 @@ exports.getOrdersByCategory = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByPrice = async (req, res, next) => {
+export const getOrdersByPrice = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { price } = req.params;
   try {
     const db = getDb();
@@ -138,7 +185,11 @@ exports.getOrdersByPrice = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByQuantity = async (req, res, next) => {
+export const getOrdersByQuantity = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { quantity } = req.params;
   try {
     const db = getDb();
@@ -152,7 +203,11 @@ exports.getOrdersByQuantity = async (req, res, next) => {
   }
 };
 
-exports.getOrdersByTotal = async (req, res, next) => {
+export const getOrdersByTotal = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { total } = req.params;
   try {
     const db = getDb();

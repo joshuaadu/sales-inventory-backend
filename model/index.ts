@@ -1,6 +1,5 @@
-const { MongoClient } = require("mongodb");
-// const mongoose = require("mongoose");
-const { mongo } = require("../config/index.js");
+import { MongoClient, Db, MongoError } from "mongodb";
+import { mongo as mongoConfig } from "../config";
 
 // mongoose.connect(mongo.uri);
 
@@ -8,14 +7,16 @@ const { mongo } = require("../config/index.js");
 //   console.log("Mongoose is connected");
 // });
 
-let _db;
+let _db: Db;
 
-exports.initDb = (callback) => {
+export const initDb = (
+  callback: (err: MongoError | null, _db: Db | null) => void
+) => {
   if (_db) {
     console.log("Db is already initialized!");
     return callback(null, _db);
   }
-  MongoClient.connect(mongo.uri)
+  MongoClient.connect(mongoConfig.uri)
     .then((client) => {
       // console.log(
       //   "Db initialized successfully",
@@ -25,12 +26,12 @@ exports.initDb = (callback) => {
       // _db = client;
       callback(null, _db);
     })
-    .catch((err) => {
-      callback(err);
+    .catch((err: MongoError) => {
+      callback(err, null);
     });
 };
 
-exports.getDb = () => {
+export const getDb = () => {
   if (!_db) {
     throw Error("Db not initialized");
   }

@@ -5,7 +5,7 @@ GET http://localhost:3000/products
 
 // LOCALHOST
 ### Get all contacts
-GET http://localhost:3000/products
+GET http://localhost:3000/products/652b9e201aa9da6dae725fc4
 
 
 
@@ -22,16 +22,16 @@ content-type: application/json
 
 
 ### PUT contact
-PUT http://localhost:3000/products/  HTTP/1.1
+PUT http://localhost:3000/products/652b9e201aa9da6dae725fc4  HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Update Product 2",
-  "description": "A description for the new product",
-  "price": 19.99
+  "name": "Update Producyhghtjk hjj 2",
+  "description": "A descriptio rkgj gn for the new product",
+  "price": 19.993
 }
 ### DELETE contact
-DELETE http://localhost:3000/products/652b9e051aa9da6dae725fc3 HTTP/1.1
+DELETE http://localhost:3000/products/6541afc599d30f8c4a801b13 HTTP/1.1
 
 
 
