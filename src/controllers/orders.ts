@@ -5,7 +5,7 @@ import { getDb } from "../models";
 export const addOrder = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { order } = req.body;
   try {
@@ -20,7 +20,7 @@ export const addOrder = async (
 export const getOrders = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const db = getDb();
@@ -34,7 +34,7 @@ export const getOrders = async (
 export const getOrderById = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   try {
@@ -51,7 +51,7 @@ export const getOrderById = async (
 export const updateOrder = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   const { order } = req.body;
@@ -69,7 +69,7 @@ export const updateOrder = async (
 export const deleteOrder = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   try {
@@ -86,7 +86,7 @@ export const deleteOrder = async (
 export const getOrdersByUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { user } = req.params;
   try {
@@ -101,7 +101,7 @@ export const getOrdersByUser = async (
 export const getOrdersByStatus = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { status } = req.params;
   try {
@@ -119,7 +119,7 @@ export const getOrdersByStatus = async (
 export const getOrdersByDate = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { date } = req.params;
   try {
@@ -134,7 +134,7 @@ export const getOrdersByDate = async (
 export const getOrdersByProduct = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { product } = req.params;
   try {
@@ -152,7 +152,7 @@ export const getOrdersByProduct = async (
 export const getOrdersByCategory = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { category } = req.params;
   try {
@@ -170,7 +170,7 @@ export const getOrdersByCategory = async (
 export const getOrdersByPrice = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { price } = req.params;
   try {
@@ -188,7 +188,7 @@ export const getOrdersByPrice = async (
 export const getOrdersByQuantity = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { quantity } = req.params;
   try {
@@ -206,7 +206,7 @@ export const getOrdersByQuantity = async (
 export const getOrdersByTotal = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { total } = req.params;
   try {

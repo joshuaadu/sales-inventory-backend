@@ -10,7 +10,7 @@ import { mongo as mongoConfig } from "../config";
 let _db: Db;
 
 export const initDb = (
-  callback: (err: MongoError | null, _db: Db | null) => void
+  callback: (err: MongoError | null, _db: Db | null) => void,
 ) => {
   if (_db) {
     console.log("Db is already initialized!");

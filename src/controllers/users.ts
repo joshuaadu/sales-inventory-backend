@@ -5,7 +5,7 @@ import { getDb } from "../models";
 export const addUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { user } = req.body;
   try {
@@ -19,7 +19,7 @@ export const addUser = async (
 export const getUsers = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const db = getDb();
@@ -32,7 +32,7 @@ export const getUsers = async (
 export const getUserById = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   try {
@@ -49,7 +49,7 @@ export const getUserById = async (
 export const updateUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   const { user } = req.body;
@@ -67,7 +67,7 @@ export const updateUser = async (
 export const deleteUser = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   try {

@@ -5,7 +5,7 @@ import { getDb } from "../models";
 export const addToCart = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.body;
   try {
@@ -20,7 +20,7 @@ export const addToCart = async (
 export const getCart = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const db = getDb();
@@ -34,7 +34,7 @@ export const getCart = async (
 export const deleteFromCart = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
   try {
