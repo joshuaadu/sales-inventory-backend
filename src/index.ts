@@ -6,7 +6,7 @@ import { express as expressConfig } from "./config";
 // const { express } = require("./config/index.js");
 // const { initDb } = require("./db/index.js");
 import { initDb } from "./models";
-const server = createServer(app);
+export const server = createServer(app);
 
 initDb((err, _db) => {
   if (err) {
