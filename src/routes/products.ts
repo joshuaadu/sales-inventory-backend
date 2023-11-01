@@ -1,4 +1,4 @@
-import express from "express";
+import { Router } from "express";
 import { param } from "express-validator";
 import { productValidationRules, validate } from "../lib/validator";
 import {
@@ -8,7 +8,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/products";
-const router = express.Router();
+const router = Router();
 
 // Products
 router.get("/products", getProducts);

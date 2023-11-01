@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
-import { getDb } from "../model";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
+import { getDb } from "../models";
 
 export const addProduct = async (req: Request, res: Response) => {
   /*    #swagger.parameters['obj'] = {

@@ -1,18 +1,18 @@
-import http from "http";
-import app from "./app.ts";
-import { express as expressConfig } from "./config/index.ts";
+import { createServer } from "http";
+import app from "./app";
+import { express as expressConfig } from "./config";
 // const http = require("http");
 // const app = require("./app.js");
 // const { express } = require("./config/index.js");
 // const { initDb } = require("./db/index.js");
-import { initDb } from "./model";
-const server = http.createServer(app);
+import { initDb } from "./models";
+const server = createServer(app);
 
-initDb((err) => {
+initDb((err, _db) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("Db initialized successfully");
+    console.log("Db initialized successfully", _db);
     server.listen(expressConfig.port, () => {
       console.log(`Server is running on port ${expressConfig.port}`);
     });

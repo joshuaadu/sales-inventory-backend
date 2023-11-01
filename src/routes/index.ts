@@ -1,9 +1,9 @@
 import { Router } from "express";
-import productsRouter from "./products.ts";
-import ordersRouter from "./orders.ts";
-import usersRouter from "./users.ts";
-import cartRouter from "./cart.ts";
-import swaggerRouter from "./swagger.ts";
+import productsRouter from "./products";
+// import ordersRouter from "./orders.ts";
+// import usersRouter from "./users.ts";
+// import cartRouter from "./cart.ts";
+import swaggerRouter from "./swagger";
 // import productsRouter from "./products";
 
 const router = Router();

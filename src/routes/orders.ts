@@ -1,13 +1,13 @@
-import express from "express";
+import { Router } from "express";
 import {
   getOrders,
   getOrderById,
   addOrder,
   updateOrder,
   deleteOrder,
-} from "../controllers/orders.ts";
+} from "../controllers/orders";
 
-const router = express.Router();
+const router = Router();
 
 // Orders
 router.get("/orders", getOrders);

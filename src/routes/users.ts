@@ -1,11 +1,11 @@
-import express from "express";
+import { Router } from "express";
 import {
   getUsers,
   getUserById,
   addUser,
   updateUser,
   deleteUser,
-} from "../controllers/users.ts";
+} from "../controllers/users";
 // const express = require("express");
 // const {
 //   getUsers,
@@ -15,7 +15,7 @@ import {
 //   deleteUser,
 // } = require("../controllers/users.js");
 
-const router = express.Router();
+const router = Router();
 
 // Users
 router.get("/users", getUsers);
