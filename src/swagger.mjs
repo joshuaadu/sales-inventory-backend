@@ -5,10 +5,10 @@ const doc = {
     title: "Sales Inventory API",
     description: "Description",
   },
-  // host: `localhost:3000`,
-  host: "sales-inventory.onrender.com",
-  schemes: ["https"],
-  // schemes: ["http"],
+  host: `localhost:3000`,
+  // host: "sales-inventory.onrender.com",
+  // schemes: ["https"],
+  schemes: ["http"],
 };
 
 const outputFile = "../swagger.json";

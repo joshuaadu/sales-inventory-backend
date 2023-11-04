@@ -5,7 +5,7 @@ GET http://localhost:3000/products
 
 // LOCALHOST
 ### Get all contacts
-GET http://localhost:3000/products/652b9e201aa9da6dae725fc4
+GET http://localhost:3000/products/6542ed90d91bbda84312689c
 
 
 
@@ -15,14 +15,14 @@ POST http://localhost:3000/products HTTP/1.1
 content-type: application/json
 
 {
-  "name": "New Product 10",
+  "name": "New Product 12",
   "description": "A description for the new product",
   "price": 19.99
 }
 
 
 ### PUT contact
-PUT http://localhost:3000/products/652b9e201aa9da6dae725fc4  HTTP/1.1
+PUT http://localhost:3000/products/6542ed90d91bbda84312689c  HTTP/1.1
 content-type: application/json
 
 {
@@ -55,11 +55,11 @@ content-type: application/json
 
 
 ### PUT contact
-PUT https://sales-inventory.onrender.com/products/652b9f0de1e784527a52eb87 HTTP/1.1
+PUT https://sales-inventory.onrender.com/products/6542ed90d91bbda84312689c HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Update Product 2",
+  "name": "Update Product 65555",
   "description": "A description for the new product",
   "price": 19.99
 }

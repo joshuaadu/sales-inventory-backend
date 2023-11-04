@@ -1,13 +1,14 @@
 import { ObjectId } from "mongodb";
 import { NextFunction, Request, Response } from "express";
 import { getDb } from "../models";
+import { User } from "src/models/types";
 
 export const addUser = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
-  const { user } = req.body;
+  const { user } = req.body as User;
   try {
     const db = getDb();
     const result = await db.collection("users").insertOne(user);
@@ -19,7 +20,7 @@ export const addUser = async (
 export const getUsers = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   try {
     const db = getDb();
@@ -32,7 +33,7 @@ export const getUsers = async (
 export const getUserById = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { id } = req.params;
   try {
@@ -49,7 +50,7 @@ export const getUserById = async (
 export const updateUser = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { id } = req.params;
   const { user } = req.body;
@@ -67,7 +68,7 @@ export const updateUser = async (
 export const deleteUser = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { id } = req.params;
   try {

@@ -5,11 +5,10 @@
     "description": "Description",
     "version": "1.0.0"
   },
-  "host": "sales-inventory.onrender.com",
+
+  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/api-docs": {
       "get": {
@@ -45,11 +44,7 @@
                     "example": 0
                   }
                 },
-                "required": [
-                  "name",
-                  "description",
-                  "price"
-                ]
+                "required": ["name", "description", "price"]
               },
               "xml": {
                 "name": "main"
@@ -84,11 +79,7 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ]
+              "required": ["name", "description", "price"]
             }
           }
         ],
@@ -135,11 +126,7 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ],
+              "required": ["name", "description", "price"],
               "xml": {
                 "name": "main"
               }
@@ -197,11 +184,7 @@
                   "example": 0
                 }
               },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ]
+              "required": ["name", "description", "price"]
             }
           }
         ],
