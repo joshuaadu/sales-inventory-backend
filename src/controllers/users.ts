@@ -1,18 +1,18 @@
 import { ObjectId } from "mongodb";
 import { NextFunction, Request, Response } from "express";
 import { getDb } from "../models";
-import { User } from "src/models/types";
+// import { User } from "src/models/types";
 
 export const addUser = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { user } = req.body as User;
+  // const { user } = req.body as User;
   try {
-    const db = getDb();
-    const result = await db.collection("users").insertOne(user);
-    res.json(result);
+    // const db = getDb();
+    // const result = await db.collection("users").insertOne(user);
+    // res.json(result);
   } catch (err) {
     next(err);
   }
