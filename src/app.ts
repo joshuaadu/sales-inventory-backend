@@ -7,6 +7,10 @@ import { auth, requiresAuth } from "express-openid-connect";
 import { ensureDBConnection } from "./middleware/db";
 import { MongoError } from "mongodb";
 
+declare module "express-openid-connect" {
+  // Define your own types here
+}
+
 const app = express();
 
 const config = {
