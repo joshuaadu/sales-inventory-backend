@@ -44,12 +44,9 @@ app.get("/", async (req, res) => {
     const { _raw, _json, ...userProfile } = (req as Request & { oidc: any })
       .oidc.user;
     console.log("userprofile", userProfile);
-    // @ts-ignore
-    console.log("fhjkhf", req.app.locals.db);
+    // console.log("fhjkhf", req.app.locals.db);
     console.log(_json);
-    console.log("token", req.oidc.idTokenClaims);
-    // req.app.locals.db.collection("users").insertOne(userProfile);
-    // @ts-ignore
+    // console.log("token", req.oidc.idTokenClaims);
     req.app.locals.db
       .collection("users")
       .updateOne(
@@ -69,15 +66,10 @@ app.get("/", async (req, res) => {
           }
         }
       );
-    // res.send(JSON.stringify(userProfile, null, 2));
-    // res.send("Logged in");
-    // res.redirect("/api-docs");
     res.redirect("/api-docs");
   } else {
     res.redirect("/login");
   }
-
-  // res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
 export default app;
