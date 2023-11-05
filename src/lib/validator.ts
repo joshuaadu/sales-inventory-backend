@@ -9,6 +9,15 @@ export const productValidationRules = () => {
   ];
 };
 
+export const orderValidationRules = () => {
+  return [
+    body("user", "User ID required!").trim().isString(),
+    body("product", "Product ID required!").isString(),
+    body("quantity", "Product quantity required!").isNumeric(),
+    body("date", "Date required required!").trim().isString(),
+  ];
+};
+
 export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
