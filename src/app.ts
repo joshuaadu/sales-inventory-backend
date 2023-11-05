@@ -39,13 +39,16 @@ app
 
 // req.isAuthenticated is provided from the auth router
 app.get("/", async (req, res) => {
+  // @ts-ignore
   if (req.oidc.isAuthenticated()) {
     const { _raw, _json, ...userProfile } = req.oidc.user;
     console.log("userprofile", userProfile);
+    // @ts-ignore
     console.log("fhjkhf", req.app.locals.db);
     console.log(_json);
     console.log("token", req.oidc.idTokenClaims);
     // req.app.locals.db.collection("users").insertOne(userProfile);
+    // @ts-ignore
     req.app.locals.db
       .collection("users")
       .updateOne(
