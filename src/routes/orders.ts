@@ -19,11 +19,11 @@ router.get(
   validate,
   getOrderById
 );
-router.post("/orders", orderValidationRules, validate, addOrder);
+router.post("/orders", orderValidationRules(), validate, addOrder);
 router.put(
   "/orders/:id",
   param("id", "Order id is required!").trim().notEmpty().isString(),
-  orderValidationRules,
+  orderValidationRules(),
   validate,
   updateOrder
 );
