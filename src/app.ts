@@ -1,7 +1,7 @@
-import express from "express";
+import express, { Request } from "express";
 import router from "./routes/index";
 import morgan from "morgan";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser";
 
 import { auth, requiresAuth } from "express-openid-connect";
 import { ensureDBConnection } from "./middleware/db";
@@ -30,7 +30,7 @@ app.use(morgan("tiny"));
 app
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  .use(cookieParser())
+  // .use(cookieParser())
   .use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
@@ -41,7 +41,8 @@ app
 app.get("/", async (req, res) => {
   // @ts-ignore
   if (req.oidc.isAuthenticated()) {
-    const { _raw, _json, ...userProfile } = req.oidc.user;
+    const { _raw, _json, ...userProfile } = (req as Request & { oidc: any })
+      .oidc.user;
     console.log("userprofile", userProfile);
     // @ts-ignore
     console.log("fhjkhf", req.app.locals.db);
