@@ -5,7 +5,8 @@
     "description": "API for managing orders and products",
     "version": "1.0.0"
   },
-  "host": "sales-inventory.onrender.com",
+
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": ["https"],
   "tags": [
