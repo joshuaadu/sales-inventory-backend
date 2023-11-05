@@ -73,12 +73,12 @@ export const updateOrder = async (
         $set: {
           user: req.body.user,
           product: req.body.product,
+          quantity: req.body.quantity,
+          date: req.body.date,
           // category: req.body.category,
           // price: req.body.price,
-          quantity: req.body.quantity,
           // total: req.body.total,
           // status: req.body.status,
-          date: req.body.date,
         },
       }
     );
