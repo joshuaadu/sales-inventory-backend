@@ -1,4 +1,4 @@
-import { body, validationResult, check } from "express-validator";
+import { body, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 
 export const productValidationRules = () => {

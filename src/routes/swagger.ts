@@ -9,5 +9,3 @@ router.use("/api-docs", serve);
 router.get("/api-docs", setup(swaggerDocument));
 
 export default router;
-
-

@@ -5,16 +5,16 @@ import { express as expressConfig } from "./config";
 // const app = require("./app.js");
 // const { express } = require("./config/index.js");
 // const { initDb } = require("./db/index.js");
-import { initDb } from "./models";
-const server = createServer(app);
+// import { initDb } from "./models";
+export const server = createServer(app);
 
-initDb((err, _db) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Db initialized successfully", _db);
-    server.listen(expressConfig.port, () => {
-      console.log(`Server is running on port ${expressConfig.port}`);
-    });
-  }
+// initDb((err, _db) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Db initialized successfully", _db);
+server.listen(expressConfig.port, () => {
+  console.log(`Server is running on port ${expressConfig.port}`);
 });
+//   }
+// });

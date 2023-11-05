@@ -2,57 +2,45 @@
   "swagger": "2.0",
   "info": {
     "title": "Sales Inventory API",
-    "description": "Description",
+    "description": "API for managing orders and products",
     "version": "1.0.0"
   },
+
   "host": "sales-inventory.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
+  "schemes": ["https"],
+  "tags": [
+    {
+      "name": "Products",
+      "description": "Operations related to products"
+    },
+    {
+      "name": "Orders",
+      "description": "Operations related to orders"
+    }
   ],
   "paths": {
     "/api-docs": {
       "get": {
-        "description": "",
+        "summary": "Get API documentation",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
     "/products": {
       "get": {
-        "description": "",
+        "summary": "Get all products",
+        "tags": ["Products"],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Product name"
-                  },
-                  "description": {
-                    "type": "string",
-                    "example": "Add new product"
-                  },
-                  "price": {
-                    "type": "number",
-                    "example": 0
-                  }
-                },
-                "required": [
-                  "name",
-                  "description",
-                  "price"
-                ]
-              },
-              "xml": {
-                "name": "main"
+                "$ref": "#/definitions/Product"
               }
             }
           },
@@ -62,34 +50,11 @@
         }
       },
       "post": {
-        "description": "",
+        "summary": "Add a new product",
+        "tags": ["Products"],
         "parameters": [
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Adding new user.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Product name"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "Add new product"
-                },
-                "price": {
-                  "type": "number",
-                  "example": 0
-                }
-              },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ]
-            }
+            "$ref": "#/parameters/ProductBody"
           }
         ],
         "responses": {
@@ -107,7 +72,8 @@
     },
     "/products/{id}": {
       "get": {
-        "description": "",
+        "summary": "Get product by ID",
+        "tags": ["Products"],
         "parameters": [
           {
             "name": "id",
@@ -120,29 +86,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Product name"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "Add new product"
-                },
-                "price": {
-                  "type": "number",
-                  "example": 0
-                }
-              },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ],
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/Product"
             }
           },
           "400": {
@@ -151,16 +95,7 @@
           "404": {
             "description": "Not Found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product not found"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "500": {
@@ -169,7 +104,8 @@
         }
       },
       "put": {
-        "description": "",
+        "summary": "Update product by ID",
+        "tags": ["Products"],
         "parameters": [
           {
             "name": "id",
@@ -178,77 +114,26 @@
             "type": "string"
           },
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Adding new user.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Product name"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "Add new product"
-                },
-                "price": {
-                  "type": "number",
-                  "example": 0
-                }
-              },
-              "required": [
-                "name",
-                "description",
-                "price"
-              ]
-            }
+            "$ref": "#/parameters/ProductBody"
           }
         ],
         "responses": {
           "204": {
             "description": "No Content",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product updated successfully"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/SuccessMessage"
             }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product id is required"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "404": {
             "description": "Not Found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product not found"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "500": {
@@ -257,7 +142,8 @@
         }
       },
       "delete": {
-        "description": "",
+        "summary": "Delete product by ID",
+        "tags": ["Products"],
         "parameters": [
           {
             "name": "id",
@@ -268,51 +154,246 @@
         ],
         "responses": {
           "204": {
+            "description": "No Content",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product deleted successfully"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            },
-            "description": "No Content"
+              "$ref": "#/definitions/SuccessMessage"
+            }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product id is required"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/ErrorMessage"
             }
           },
           "404": {
+            "description": "Not Found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Product not found"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            },
-            "description": "Not Found"
+              "$ref": "#/definitions/ErrorMessage"
+            }
           }
         }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Get all orders",
+        "tags": ["Orders"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Order"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new order",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "$ref": "#/parameters/OrderBody"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "summary": "Get order by ID",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update order by ID",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/OrderBody"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "$ref": "#/definitions/SuccessMessage"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete order by ID",
+        "tags": ["Orders"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "schema": {
+              "$ref": "#/definitions/SuccessMessage"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Product name"
+        },
+        "description": {
+          "type": "string",
+          "example": "Product description"
+        },
+        "price": {
+          "type": "number",
+          "example": 0
+        }
+      },
+      "required": ["name", "description", "price"]
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "example": "User ID"
+        },
+        "product": {
+          "type": "string",
+          "example": "Product ID"
+        },
+        "quantity": {
+          "type": "number",
+          "example": 1
+        },
+        "date": {
+          "type": "string",
+          "example": "11/1/2023, 04:00:38 PM"
+        }
+      },
+      "required": ["user", "product", "quantity", "date"]
+    },
+    "ErrorMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Error message"
+        }
+      }
+    },
+    "SuccessMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Success message"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "ProductBody": {
+      "name": "obj",
+      "in": "body",
+      "description": "The new product object",
+      "schema": {
+        "$ref": "#/definitions/Product"
+      }
+    },
+    "OrderBody": {
+      "name": "obj",
+      "in": "body",
+      "description": "The new order object",
+      "schema": {
+        "$ref": "#/definitions/Order"
       }
     }
   }

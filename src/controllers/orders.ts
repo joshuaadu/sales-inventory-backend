@@ -7,10 +7,20 @@ export const addOrder = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { order } = req.body;
+  // const { order } = req.body;
+  console.log(req.body);
   try {
     const db = getDb();
-    const result = await db.collection("orders").insertOne(order);
+    const result = await db.collection("orders").insertOne({
+      user: req.body.user,
+      product: req.body.product,
+      // category: req.body.category,
+      // price: req.body.price,
+      quantity: req.body.quantity,
+      // total: req.body.total,
+      // status: req.body.status,
+      date: req.body.date,
+    });
     res.json(result);
   } catch (err) {
     next(err);
@@ -50,36 +60,57 @@ export const getOrderById = async (
 
 export const updateOrder = async (
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
+  // next: NextFunction
 ) => {
   const { id } = req.params;
-  const { order } = req.body;
+  // const { order } = req.body;
   try {
     const db = getDb();
-    const result = await db
-      .collection("orders")
-      .updateOne({ _id: new ObjectId(id) }, { $set: order });
-    res.json(result);
+    const result = await db.collection("orders").updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          user: req.body.user,
+          product: req.body.product,
+          // category: req.body.category,
+          // price: req.body.price,
+          quantity: req.body.quantity,
+          // total: req.body.total,
+          // status: req.body.status,
+          date: req.body.date,
+        },
+      }
+    );
+    // res.json(result);
+    console.log(result);
+    if (result.matchedCount > 0) {
+      // res.status(202).json({ message: "Updated" }); // 204 No Content
+      res.status(204).end(); // 204 No Content
+    } else {
+      res.status(404).json({ message: "Order not found" }); // 404 Not Found
+    }
   } catch (err) {
-    next(err);
+    // next(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
-export const deleteOrder = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deleteOrder = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const db = getDb();
     const result = await db
       .collection("orders")
       .deleteOne({ _id: new ObjectId(id) });
-    res.json(result);
+    if (result.deletedCount > 0) {
+      res.status(204).end(); // 204 No Content
+    } else {
+      res.status(404).json({ message: "Order not found" }); // 404 Not Found
+    }
   } catch (err) {
-    next(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
   }
 };
 
