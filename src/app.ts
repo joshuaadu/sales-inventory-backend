@@ -7,13 +7,12 @@ import { auth } from "express-openid-connect";
 import { ensureDBConnection } from "./middleware/db";
 import { MongoError } from "mongodb";
 
-
 const app = express();
 
 const config = {
   authRequired: true,
   auth0Logout: true,
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://sales-inventory.onrender.com",
   clientID: process.env.AUTH0_CLIENT_ID,
   issuerBaseURL: process.env.AUTH0_DOMAIN,
   secret: process.env.AUTH0_CLIENT_SECRET,
