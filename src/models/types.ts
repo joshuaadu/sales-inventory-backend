@@ -24,6 +24,7 @@ export interface Product {
   price: number;
   createdAt: Date;
   updatedAt: Date;
+  createdBy: User["id"];
 }
 
 export interface CartItem {
@@ -55,6 +56,15 @@ export interface Order {
   user: User;
   items: OrderItem[];
   status: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Sale {
+  id: string;
+  user_id: User["id"];
+  product: Product;
+  quantity: number;
   createdAt: Date;
   updatedAt: Date;
 }
