@@ -8,6 +8,7 @@ import pluralize from "pluralize";
 import router from "./routes/index";
 import { ensureDBConnection } from "./middleware/db";
 import path from "path";
+import { ROOT_DIR } from "./utli/path";
 
 // const config = {
 //   authRequired: true,
@@ -18,12 +19,14 @@ import path from "path";
 //   secret: process.env.AUTH0_CLIENT_SECRET,
 // };
 
+// console.log(ROOT_DIR);
 const app = express();
 app.locals.pluralize = pluralize;
 
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
+// console.log(path.join(__dirname, "..", "public"));
 app.use(ensureDBConnection);
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
@@ -78,7 +81,7 @@ app
 // });
 
 app.use((req, res) => {
-  res.status(404).render("404");
+  res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
 export default app;
