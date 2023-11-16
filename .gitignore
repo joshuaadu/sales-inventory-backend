@@ -11,7 +11,7 @@ node_modules/
 # Build output
 build/
 dist/
-
+public/js/preline.js
 # IDE files
 .vscode/
 .idea/

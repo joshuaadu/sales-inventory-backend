@@ -4,6 +4,7 @@
   "description": "",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@tailwindcss/forms": "^0.5.7",
     "@types/cookie-parser": "^1.4.5",
     "@types/express": "^4.17.20",
     "@types/express-session": "^1.17.9",
@@ -34,7 +35,7 @@
     "dev": "nodemon --exec ts-node --esm ./src/index.ts",
     "start-dev": "ts-node-dev --respawn ./src/index.ts",
     "start": "node dist/index.js",
-    "build": "tsc && NODE_ENV=production npx tailwindcss build ./src/styles/input.css -o public/css/main.css && cp -r src/views dist/",
+    "build": "tsc && NODE_ENV=production npx tailwindcss build ./src/styles/input.css -o public/css/main.css && cp -r src/views dist/ && cp -r ./node_modules/preline/dist/preline.js public/js/",
     "lint": "eslint src",
     "format": "npx prettier --write src",
     "format:check": "npx prettier --check src",
@@ -71,6 +72,7 @@
     "passport-openidconnect": "^0.1.1",
     "pluralize": "^8.0.0",
     "postcss": "^8.4.31",
+    "preline": "^2.0.0",
     "swagger-ui-express": "^5.0.0"
   },
   "engines": {
