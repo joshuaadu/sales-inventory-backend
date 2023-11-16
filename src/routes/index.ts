@@ -16,5 +16,9 @@ router.use(productsRouter);
 router.use(ordersRouter);
 // router.use(usersRouter);
 // router.use(cartRouter);
+router.get("/", (req, res) => {
+  res.render("home");
+});
+
 
 export default router;
