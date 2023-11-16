@@ -1,13 +1,13 @@
 import express, { Request } from "express";
-import router from "./routes/index";
 import morgan from "morgan";
+import { auth } from "express-openid-connect";
+import { MongoError } from "mongodb";
+import pluralize from "pluralize";
 // import cookieParser from "cookie-parser";
 
-import { auth } from "express-openid-connect";
+import router from "./routes/index";
 import { ensureDBConnection } from "./middleware/db";
-import { MongoError } from "mongodb";
-
-const app = express();
+import path from "path";
 
 const config = {
   authRequired: true,
@@ -18,6 +18,14 @@ const config = {
   secret: process.env.AUTH0_CLIENT_SECRET,
 };
 
+// console.log(ROOT_DIR);
+const app = express();
+app.locals.pluralize = pluralize;
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "..", "public")));
+// console.log(path.join(__dirname, "..", "public"));
 app.use(ensureDBConnection);
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
@@ -39,7 +47,6 @@ app
 
 // req.isAuthenticated is provided from the auth router
 app.get("/", async (req, res) => {
-  // @ts-ignore
   if (req.oidc.isAuthenticated()) {
     const { _raw, _json, ...userProfile } = (req as Request & { oidc: any })
       .oidc.user;
@@ -70,6 +77,10 @@ app.get("/", async (req, res) => {
   } else {
     res.redirect("/login");
   }
+});
+
+app.use((req, res) => {
+  res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
 export default app;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { serve, setup } from "swagger-ui-express";
-import swaggerDocument from "../../swagger.json";
+import swaggerDocument from "../swagger.json";
 
 const router = Router();
 
