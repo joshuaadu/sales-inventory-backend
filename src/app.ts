@@ -8,7 +8,6 @@ import pluralize from "pluralize";
 import router from "./routes/index";
 import { ensureDBConnection } from "./middleware/db";
 import path from "path";
-import { error } from "console";
 import errorhandler from "./middleware/error";
 
 const config = {
@@ -31,7 +30,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(ensureDBConnection);
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
-// app.use(auth(config));
+app.use(auth(config));
 
 app.use(morgan("tiny"));
 // if (process.env.NODE_ENV === "development") {
@@ -48,43 +47,45 @@ app
   .use("/", router);
 
 // req.isAuthenticated is provided from the auth router
-// app.get("/", async (req, res) => {
-//   if (req.oidc.isAuthenticated()) {
-//     const { _raw, _json, ...userProfile } = (req as Request & { oidc: any })
-//       .oidc.user;
-//     console.log("userprofile", userProfile);
-//     // console.log("fhjkhf", req.app.locals.db);
-//     console.log(_json);
-//     // console.log("token", req.oidc.idTokenClaims);
-//     req.app.locals.db
-//       .collection("users")
-//       .updateOne(
-//         { sub: userProfile.sub },
-//         { $set: userProfile },
-//         { upsert: true },
-//         (err: MongoError, result: unknown) => {
-//           if (err) {
-//             // Log errors during the database operation
-//             console.error("Error adding user to MongoDB:", err);
-//             res.status(500).send("Failed to add user");
-//           } else {
-//             // Log successful addition
-//             console.log(result);
-//             console.log("User added to MongoDB successfully");
-//             res.redirect("/api-docs");
-//           }
-//         }
-//       );
-//     res.redirect("/api-docs");
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
+app.get("/", async (req, res) => {
+  if (req.oidc.isAuthenticated()) {
+    const { _raw, _json, ...userProfile } = (req as Request & { oidc: any })
+      .oidc.user;
+    console.log("userprofile", userProfile);
+    // console.log("fhjkhf", req.app.locals.db);
+    console.log(_json);
+    // console.log("token", req.oidc.idTokenClaims);
+    req.app.locals.db
+      .collection("users")
+      .updateOne(
+        { sub: userProfile.sub },
+        { $set: userProfile },
+        { upsert: true },
+        (err: MongoError, result: unknown) => {
+          if (err) {
+            // Log errors during the database operation
+            console.error("Error adding user to MongoDB:", err);
+            res.status(500).send("Failed to add user");
+          } else {
+            // Log successful addition
+            console.log(result);
+            console.log("User added to MongoDB successfully");
+            res.redirect("/api-docs");
+          }
+        }
+      );
+    res.redirect("/api-docs");
+  } else {
+    res.redirect("/login");
+  }
+});
 
 app.use((req, res) => {
   res.status(404).render("404", {
     pageTitle: "Page Not Found",
-    isAuthenticated: req?.isAuthenticated() ?? false,
+    // isAuthenticated: false,
+    path: "/404",
+    isAuthenticated: req.oidc.isAuthenticated() ?? false,
   });
 });
 
