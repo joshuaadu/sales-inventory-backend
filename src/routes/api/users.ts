@@ -5,7 +5,7 @@ import {
   addUser,
   updateUser,
   deleteUser,
-} from "../controllers/users";
+} from "../../controllers/users";
 // const express = require("express");
 // const {
 //   getUsers,

@@ -10,5 +10,4 @@ const router = Router();
 router.use(productsRouter);
 router.use(ordersRouter);
 
-
 export default router;

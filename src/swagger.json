@@ -334,6 +334,10 @@
         "price": {
           "type": "number",
           "example": 0
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "https://example.com/image.jpg"
         }
       },
       "required": ["name", "description", "price"]
