@@ -8,6 +8,7 @@ import pluralize from "pluralize";
 import router from "./routes/index";
 import { ensureDBConnection } from "./middleware/db";
 import path from "path";
+import errorhandler from "./middleware/error";
 
 const config = {
   authRequired: true,
@@ -80,7 +81,14 @@ app.get("/", async (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).render("404", { pageTitle: "Page Not Found" });
+  res.status(404).render("404", {
+    pageTitle: "Page Not Found",
+    // isAuthenticated: false,
+    path: "/404",
+    isAuthenticated: req.oidc.isAuthenticated() ?? false,
+  });
 });
+
+app.use(errorhandler);
 
 export default app;

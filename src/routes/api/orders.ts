@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { param } from "express-validator";
-import { orderValidationRules, validate } from "../lib/validator";
+import { orderValidationRules, validate } from "../../lib/validator";
 import {
   getOrders,
   getOrderById,
   addOrder,
   updateOrder,
   deleteOrder,
-} from "../controllers/orders";
+} from "../../controllers/orders";
 
 const router = Router();
 

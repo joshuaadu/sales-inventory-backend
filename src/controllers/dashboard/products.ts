@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { Request, Response } from "express";
-import { getDb } from "../models";
+import { getDb } from "../../models";
+import path from "path";
 
 export const addProduct = async (req: Request, res: Response) => {
   /*    #swagger.parameters['obj'] = {
@@ -10,15 +11,19 @@ export const addProduct = async (req: Request, res: Response) => {
                     $name: 'Product name',
                     $description: "Add new product",
                     $price: 0.00
-                    $imageUrl: "https://unsplash.com/photos/7AqEJhsK0eM"
                 }
         } */
   try {
     const db = getDb();
     // console.log("Db", db);
-    const result = await db.collection("products").insertOne(req.body);
-    res.status(201).json({ id: result.insertedId }); // 201 Created
+    const { name, description, price, imageUrl } = req.body;
+    const result = await db
+      .collection("products")
+      .insertOne({ name, description, price, imageUrl });
+    // res.status(201).json({ id: result.insertedId }); // 201 Created
     // res.json(result);
+    console.log(result);
+    res.redirect("/dashboard/products");
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
@@ -32,7 +37,6 @@ export const getProducts = async (req: Request, res: Response) => {
                     $name: 'Product name',
                     $description: "Add new product",
                     $price: 0.00
-                    $imageUrl: "https://unsplash.com/photos/7AqEJhsK0eM"
                 }
               ]
         } */
@@ -40,11 +44,20 @@ export const getProducts = async (req: Request, res: Response) => {
     const db = getDb();
     console.log("Db", db.collection);
     const result = await db.collection("products").find({}).toArray();
-    res.status(200).json(result); // 200 OK
+    // res.status(200).json(result);
+    return res.render("dashboard/products", {
+      pageTitle: "Products",
+      products: result,
+      path: "/dashboard/products",
+    }); // 200 OK
   } catch (err) {
     // next(err);
     console.log(err);
-    res.status(500).json({ message: "Internal Server Error" }); // 500 Internal Server Error
+    return res.render("dashboard/products", {
+      pageTitle: "Products",
+      products: [],
+      path: "/dashboard/products",
+    });
   }
 };
 
@@ -54,8 +67,6 @@ export const getProductById = async (req: Request, res: Response) => {
                     $name: 'Product name',
                     $description: "Add new product",
                     $price: 0.00
-                    $imageUrl: "https://unsplash.com/photos/7AqEJhsK0eM"
-
                 }
         } */
   /*
@@ -105,7 +116,6 @@ export const updateProduct = async (req: Request, res: Response) => {
                     $name: 'Product name',
                     $description: "Add new product",
                     $price: 0.00
-                    $imageUrl: "https://unsplash.com/photos/7AqEJhsK0eM"
                 }
         } */
   const { id } = req.params;

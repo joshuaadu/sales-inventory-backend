@@ -30,7 +30,7 @@
         }
       }
     },
-    "/products": {
+    "/api/products": {
       "get": {
         "summary": "Get all products",
         "tags": ["Products"],
@@ -70,7 +70,7 @@
         }
       }
     },
-    "/products/{id}": {
+    "/api/products/{id}": {
       "get": {
         "summary": "Get product by ID",
         "tags": ["Products"],
@@ -174,7 +174,7 @@
         }
       }
     },
-    "/orders": {
+    "/api/orders": {
       "get": {
         "summary": "Get all orders",
         "tags": ["Orders"],
@@ -214,7 +214,7 @@
         }
       }
     },
-    "/orders/{id}": {
+    "/api/orders/{id}": {
       "get": {
         "summary": "Get order by ID",
         "tags": ["Orders"],
@@ -334,6 +334,10 @@
         "price": {
           "type": "number",
           "example": 0
+        },
+        "imageUrl": {
+          "type": "string",
+          "example": "https://example.com/image.jpg"
         }
       },
       "required": ["name", "description", "price"]
